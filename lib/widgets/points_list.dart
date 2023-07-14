@@ -13,15 +13,18 @@ class PointsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30.0),
+      padding: const EdgeInsets.only(top: 24.0),
       child: ListView.separated(
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text(list[index]),
-              trailing: Text('0 jogadas'),
-              tileColor: Colors.grey[900],
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: ListTile(
+                title: Text(list[index]),
+                trailing: Text('0 jogadas'),
+                tileColor: Colors.grey[900],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
               ),
             );
           },

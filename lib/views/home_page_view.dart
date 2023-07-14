@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:round_six/models/enums/constants.dart';
 import 'package:round_six/theme/theme.dart';
-import 'package:round_six/views/records_page_view.dart';
+import 'package:round_six/views/level_page_view.dart';
 import 'package:round_six/widgets/logo_widget.dart';
 import 'package:round_six/widgets/start_button_widget.dart';
 
@@ -12,11 +12,11 @@ class HomePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    showRecords(Modo modo) async {
+    showLevel(Modo modo) async {
       await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => RecordsPageView(modo: modo),
+          builder: (context) => LevelPageView(modo: modo),
         ),
       );
     }
@@ -32,12 +32,12 @@ class HomePageView extends StatelessWidget {
             StartButtonWidget(
               color: Colors.white,
               title: 'Modo Normal',
-              onPressed: () => showRecords(Modo.normal),
+              onPressed: () => showLevel(Modo.normal),
             ),
             StartButtonWidget(
               color: RoundSixTheme.mainColor,
               title: 'Modo Round 6',
-              onPressed: () => showRecords(Modo.round6),
+              onPressed: () => showLevel(Modo.round6),
             ),
           ],
         ),

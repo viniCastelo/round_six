@@ -18,7 +18,7 @@ class _ModeTitleWidgetState extends State<ModeTitleWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 40.0),
+      padding: EdgeInsets.only(top: 48.0),
       child: Text(
         'Modo ${widget.text}',
         style: TextStyle(
