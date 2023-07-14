@@ -21,16 +21,15 @@ class RecordsPageView extends StatefulWidget {
 
 class _RecordsPageViewState extends State<RecordsPageView> {
   final List<String> recs = [
-    'Nível 6',
-    'Nível 8',
-    'Nível 10',
-    'Nível 12',
-    'Nível 14',
-    'Nível 16',
-    'Nível 18',
-    'Nível 20',
-    'Nível 22',
-    'Nível 24',
+    'Nivel 6',
+    'Nivel 8',
+    'Nivel 10',
+    'Nivel 12',
+    'Nivel 16',
+    'Nivel 18',
+    'Nivel 20',
+    'Nivel 24',
+    'Nivel 28',
   ];
 
   getModo() {

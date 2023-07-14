@@ -3,16 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:round_six/models/enums/constants.dart';
 import 'package:round_six/theme/theme.dart';
+import 'package:round_six/views/game_page_view.dart';
 import 'package:round_six/views/records_page_view.dart';
 import 'package:round_six/widgets/level_card_widget.dart';
 
 class LevelPageView extends StatelessWidget {
-  LevelPageView({
+  const LevelPageView({
     required this.modo,
     super.key,
   });
 
-  Modo modo;
+  final Modo modo;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,15 @@ class LevelPageView extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => RecordsPageView(modo: modo),
+        ),
+      );
+    }
+
+    showGamePage(Modo modo, int level) async {
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GamePageView(modo: modo, level: level),
         ),
       );
     }
@@ -49,15 +59,51 @@ class LevelPageView extends StatelessWidget {
           crossAxisSpacing: 20,
           padding: EdgeInsets.all(24.0),
           children: [
-            LevelCardWidget(modo: modo, level: 6),
-            LevelCardWidget(modo: modo, level: 8),
-            LevelCardWidget(modo: modo, level: 10),
-            LevelCardWidget(modo: modo, level: 12),
-            LevelCardWidget(modo: modo, level: 16),
-            LevelCardWidget(modo: modo, level: 18),
-            LevelCardWidget(modo: modo, level: 20),
-            LevelCardWidget(modo: modo, level: 24),
-            LevelCardWidget(modo: modo, level: 28),
+            LevelCardWidget(
+              modo: modo,
+              level: 6,
+              onTap: () => showGamePage(modo, 6),
+            ),
+            LevelCardWidget(
+              modo: modo,
+              level: 8,
+              onTap: () => showGamePage(modo, 8),
+            ),
+            LevelCardWidget(
+              modo: modo,
+              level: 10,
+              onTap: () => showGamePage(modo, 10),
+            ),
+            LevelCardWidget(
+              modo: modo,
+              level: 12,
+              onTap: () => showGamePage(modo, 12),
+            ),
+            LevelCardWidget(
+              modo: modo,
+              level: 16,
+              onTap: () => showGamePage(modo, 16),
+            ),
+            LevelCardWidget(
+              modo: modo,
+              level: 18,
+              onTap: () => showGamePage(modo, 18),
+            ),
+            LevelCardWidget(
+              modo: modo,
+              level: 20,
+              onTap: () => showGamePage(modo, 20),
+            ),
+            LevelCardWidget(
+              modo: modo,
+              level: 24,
+              onTap: () => showGamePage(modo, 24),
+            ),
+            LevelCardWidget(
+              modo: modo,
+              level: 28,
+              onTap: () => showGamePage(modo, 28),
+            ),
           ],
         ),
       ),

@@ -9,16 +9,13 @@ class TextButtonWidget extends StatelessWidget {
   }) : super(key: key);
 
   final VoidCallback onTap;
-  final String text;
+  final Text text;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: 70.0),
-      child: InkWell(
-        onTap: onTap,
-        child: Text(text),
-      ),
+    return InkWell(
+      onTap: onTap,
+      child: text,
     );
   }
 }
