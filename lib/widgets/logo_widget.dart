@@ -27,7 +27,7 @@ class LogoWidget extends StatelessWidget {
               children: [
                 TextSpan(
                   text: 'Memory',
-                  style: TextStyle(color: RoundSixTheme.color),
+                  style: TextStyle(color: RoundSixTheme.mainColor),
                 ),
               ],
             ),

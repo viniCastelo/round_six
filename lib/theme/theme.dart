@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RoundSixTheme {
-  static MaterialColor color = const MaterialColor(
+  static MaterialColor mainColor = const MaterialColor(
     0xFFFB217F,
     {
       50: Color(0xFFFEC8DF),
@@ -39,6 +39,7 @@ class RoundSixTheme {
     double padding = 24.0,
   }) {
     return OutlinedButton.styleFrom(
+      foregroundColor: color,
       padding: EdgeInsets.symmetric(vertical: padding),
       side: BorderSide(color: color),
       shape: RoundedRectangleBorder(
@@ -50,8 +51,8 @@ class RoundSixTheme {
   static ThemeData theme = ThemeData(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: background,
-    primarySwatch: color,
-    primaryColor: color,
+    primarySwatch: mainColor,
+    primaryColor: mainColor,
     textTheme: GoogleFonts.wendyOneTextTheme(
       ThemeData.dark().textTheme,
     ),
