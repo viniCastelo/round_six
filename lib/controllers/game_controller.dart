@@ -60,4 +60,42 @@ abstract class GameControllerBase with Store {
     _resetScore();
     _generateCards();
   }
+
+  _resetMove() {
+    _choice = [];
+    _choiceCallback = [];
+  }
+
+  _updateScore() {
+    _gamePlay.mode == Mode.normal ? score++ : score--;
+  }
+
+  comparChoises() async {
+    if (fullMove) {
+      if (_choice[0].option == _choice[1].option) {
+        _hits++;
+        _choice[0].matched = true;
+        _choice[1].matched = true;
+      } else {
+        await Future.delayed(
+          const Duration(milliseconds: 1500),
+          () {
+            for (var i in [0, 1]) {
+              _choice[i].selected = false;
+              _choiceCallback[i]();
+            }
+          },
+        );
+      }
+      _resetMove();
+      _updateScore();
+    }
+  }
+
+  toChose(GameOption option, Function resetCard) async {
+    option.selected = true;
+    _choice.add(option);
+    _choiceCallback.add(resetCard);
+    await comparChoises();
+  }
 }
