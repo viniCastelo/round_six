@@ -3,17 +3,18 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:round_six/models/enums/constants.dart';
+import 'package:round_six/models/game_option_model.dart';
 import 'package:round_six/theme/theme.dart';
 
 class CardGameWidget extends StatefulWidget {
   const CardGameWidget({
     Key? key,
     required this.mode,
-    required this.option,
+    required this.gameOption,
   }) : super(key: key);
 
   final Mode mode;
-  final int option;
+  final GameOption gameOption;
 
   @override
   State<CardGameWidget> createState() => _CardGameWidgetState();
@@ -40,7 +41,7 @@ class _CardGameWidgetState extends State<CardGameWidget>
 
   AssetImage getImage(double angle) {
     if (angle > 0.5 * pi) {
-      return AssetImage('images/${widget.option.toString()}.png');
+      return AssetImage('images/${widget.gameOption.option.toString()}.png');
     } else {
       return widget.mode == Mode.normal
           ? const AssetImage('images/card_normal.png')

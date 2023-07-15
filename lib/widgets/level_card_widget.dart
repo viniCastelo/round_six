@@ -1,6 +1,8 @@
 // ignore_for_file: must_be_immutable, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:round_six/controllers/game_controller.dart';
 import 'package:round_six/models/enums/constants.dart';
 import 'package:round_six/models/game_play_model.dart';
 import 'package:round_six/theme/theme.dart';
@@ -15,6 +17,7 @@ class LevelCardWidget extends StatelessWidget {
   GamePlay gamePlay;
 
   startGame(BuildContext context) {
+    context.read<GameController>().startGame(gamePlay: gamePlay);
     Navigator.push(
       context,
       MaterialPageRoute(
