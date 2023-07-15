@@ -34,7 +34,7 @@ class GamePageView extends StatelessWidget {
             gamePlay.level,
             (index) => CardGameWidget(
               mode: gamePlay.mode,
-              opcao: 1,
+              option: 1,
             ),
           ),
         ),

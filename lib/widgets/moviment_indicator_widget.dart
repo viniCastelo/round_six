@@ -1,15 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:round_six/controllers/game_controller.dart';
 
 class MovimentIndicatorWidget extends StatefulWidget {
   const MovimentIndicatorWidget({
     Key? key,
     required this.icon,
-    required this.count,
+    required this.provider,
   }) : super(key: key);
 
   final Icon icon;
-  final int count;
+  final GameController provider;
 
   @override
   State<MovimentIndicatorWidget> createState() =>
@@ -22,7 +24,7 @@ class _MovimentIndicatorWidgetState extends State<MovimentIndicatorWidget> {
     return Row(
       children: [
         widget.icon,
-        Text(' ${widget.count.toString()}'),
+        Observer(builder: (_) => Text(widget.provider.score.toString())),
       ],
     );
   }

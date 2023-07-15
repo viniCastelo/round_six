@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:round_six/controllers/game_controller.dart';
 
 import 'package:round_six/models/enums/constants.dart';
 import 'package:round_six/theme/theme.dart';
@@ -16,6 +18,7 @@ class GameScoreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<GameController>(context);
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Row(
@@ -23,10 +26,11 @@ class GameScoreWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           MovimentIndicatorWidget(
-              icon: mode == Mode.normal
-                  ? Icon(Icons.touch_app_rounded)
-                  : Icon(Icons.my_location, color: RoundSixTheme.mainColor),
-              count: 18),
+            icon: mode == Mode.normal
+                ? Icon(Icons.touch_app_rounded)
+                : Icon(Icons.my_location, color: RoundSixTheme.mainColor),
+            provider: controller,
+          ),
           Image.asset('images/robo.png', width: 80.0),
           TextButtonWidget(
             onTap: () {

@@ -1,9 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors, unnecessary_null_comparison
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-
 import 'package:round_six/models/enums/constants.dart';
 import 'package:round_six/theme/theme.dart';
 
@@ -11,11 +9,11 @@ class CardGameWidget extends StatefulWidget {
   const CardGameWidget({
     Key? key,
     required this.mode,
-    required this.opcao,
+    required this.option,
   }) : super(key: key);
 
   final Mode mode;
-  final int opcao;
+  final int option;
 
   @override
   State<CardGameWidget> createState() => _CardGameWidgetState();
@@ -30,7 +28,7 @@ class _CardGameWidgetState extends State<CardGameWidget>
     super.initState();
     animation = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
     );
   }
 
@@ -40,26 +38,32 @@ class _CardGameWidgetState extends State<CardGameWidget>
     super.dispose();
   }
 
+  AssetImage getImage(double angle) {
+    if (angle > 0.5 * pi) {
+      return AssetImage('images/${widget.option.toString()}.png');
+    } else {
+      return widget.mode == Mode.normal
+          ? const AssetImage('images/card_normal.png')
+          : const AssetImage('images/card_round.png');
+    }
+  }
+
   flipCard() {
     if (!animation.isAnimating) {
       animation.forward();
       Timer(
-        Duration(seconds: 2),
+        Duration(milliseconds: 1500),
         () {
-          animation.reverse();
+          if (mounted) {
+            animation.reverse();
+          }
         },
       );
     }
   }
 
-  AssetImage getImage(double angle) {
-    if (angle > 0.5 * pi) {
-      return AssetImage('images/${widget.opcao.toString()}.png');
-    } else {
-      return widget.mode == Mode.normal
-          ? AssetImage('images/card_normal.png')
-          : AssetImage('images/card_round.png');
-    }
+  resetCard() {
+    animation.reverse();
   }
 
   @override
