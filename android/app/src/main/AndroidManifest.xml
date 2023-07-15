@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="round_six"
+        android:label="Round 6 Memory"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

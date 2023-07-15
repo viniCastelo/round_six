@@ -2,36 +2,45 @@
 
 import 'package:flutter/material.dart';
 import 'package:round_six/models/enums/constants.dart';
+import 'package:round_six/models/game_play_model.dart';
 import 'package:round_six/theme/theme.dart';
+import 'package:round_six/views/game_page_view.dart';
 
 class LevelCardWidget extends StatelessWidget {
   LevelCardWidget({
-    required this.modo,
-    required this.level,
-    this.onTap,
+    required this.gamePlay,
     super.key,
   });
 
-  int level;
-  Modo modo;
-  VoidCallback? onTap;
+  GamePlay gamePlay;
+
+  startGame(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => GamePageView(gamePlay: gamePlay),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: () => startGame(context),
       child: Container(
         decoration: BoxDecoration(
           color: RoundSixTheme.background,
           borderRadius: BorderRadius.circular(20.0),
           border: Border.all(
-            color: modo == Modo.normal ? Colors.white : RoundSixTheme.mainColor,
+            color: gamePlay.mode == Mode.normal
+                ? Colors.white
+                : RoundSixTheme.mainColor,
             width: 4.0,
           ),
         ),
         child: Center(
           child: Text(
-            level.toString(),
+            gamePlay.level.toString(),
             style: TextStyle(
               fontSize: 24.0,
               color: Colors.white,

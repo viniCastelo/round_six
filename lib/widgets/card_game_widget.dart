@@ -10,11 +10,11 @@ import 'package:round_six/theme/theme.dart';
 class CardGameWidget extends StatefulWidget {
   const CardGameWidget({
     Key? key,
-    required this.modo,
+    required this.mode,
     required this.opcao,
   }) : super(key: key);
 
-  final Modo modo;
+  final Mode mode;
   final int opcao;
 
   @override
@@ -56,7 +56,7 @@ class _CardGameWidgetState extends State<CardGameWidget>
     if (angle > 0.5 * pi) {
       return AssetImage('images/${widget.opcao.toString()}.png');
     } else {
-      return widget.modo == Modo.normal
+      return widget.mode == Mode.normal
           ? AssetImage('images/card_normal.png')
           : AssetImage('images/card_round.png');
     }
@@ -80,7 +80,7 @@ class _CardGameWidgetState extends State<CardGameWidget>
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: widget.modo == Modo.normal
+                  color: widget.mode == Mode.normal
                       ? Colors.white
                       : RoundSixTheme.mainColor,
                   width: 2.0,

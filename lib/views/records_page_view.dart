@@ -4,36 +4,26 @@
 import 'package:flutter/material.dart';
 
 import 'package:round_six/models/enums/constants.dart';
+import 'package:round_six/models/game_play_model.dart';
+import 'package:round_six/models/game_settings_model.dart';
 import 'package:round_six/widgets/mode_title_widget.dart';
 import 'package:round_six/widgets/points_list.dart';
 
 class RecordsPageView extends StatefulWidget {
   const RecordsPageView({
     Key? key,
-    required this.modo,
+    required this.gamePlay,
   }) : super(key: key);
 
-  final Modo modo;
+  final GamePlay gamePlay;
 
   @override
   State<RecordsPageView> createState() => _RecordsPageViewState();
 }
 
 class _RecordsPageViewState extends State<RecordsPageView> {
-  final List<String> recs = [
-    'Nivel 6',
-    'Nivel 8',
-    'Nivel 10',
-    'Nivel 12',
-    'Nivel 16',
-    'Nivel 18',
-    'Nivel 20',
-    'Nivel 24',
-    'Nivel 28',
-  ];
-
   getModo() {
-    return widget.modo == Modo.normal ? 'Normal' : 'Round 6';
+    return widget.gamePlay.mode == Mode.normal ? 'Normal' : 'Round 6';
   }
 
   @override
@@ -46,7 +36,7 @@ class _RecordsPageViewState extends State<RecordsPageView> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ModeTitleWidget(text: getModo()),
-          Expanded(child: PointsListWidget(list: recs)),
+          Expanded(child: PointsListWidget(list: GameSettingsModel.levels)),
         ],
       ),
     );

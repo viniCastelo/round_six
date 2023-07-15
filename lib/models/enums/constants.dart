@@ -1,4 +1,4 @@
-enum Modo {
+enum Mode {
   normal,
   round6,
 }

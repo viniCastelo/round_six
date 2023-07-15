@@ -8,7 +8,7 @@ class PointsListWidget extends StatelessWidget {
     super.key,
   });
 
-  List<String> list;
+  List<int> list;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class PointsListWidget extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListTile(
-                title: Text(list[index]),
+                title: Text(list[index].toString()),
                 trailing: Text('0 jogadas'),
                 tileColor: Colors.grey[900],
                 shape: RoundedRectangleBorder(

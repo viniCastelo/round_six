@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:round_six/models/enums/constants.dart';
+import 'package:round_six/models/game_play_model.dart';
 import 'package:round_six/theme/theme.dart';
 import 'package:round_six/views/level_page_view.dart';
 import 'package:round_six/widgets/logo_widget.dart';
@@ -12,11 +13,12 @@ class HomePageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    showLevel(Modo modo) async {
+    showLevel(Mode mode) async {
       await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => LevelPageView(modo: modo),
+          builder: (context) =>
+              LevelPageView(gamePlay: GamePlay(mode: mode, level: 6)),
         ),
       );
     }
@@ -32,12 +34,12 @@ class HomePageView extends StatelessWidget {
             StartButtonWidget(
               color: Colors.white,
               title: 'Modo Normal',
-              onPressed: () => showLevel(Modo.normal),
+              onPressed: () => showLevel(Mode.normal),
             ),
             StartButtonWidget(
               color: RoundSixTheme.mainColor,
               title: 'Modo Round 6',
-              onPressed: () => showLevel(Modo.round6),
+              onPressed: () => showLevel(Mode.round6),
             ),
           ],
         ),
