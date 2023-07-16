@@ -1,7 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_const_constructors, unnecessary_null_comparison
-import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:round_six/controllers/game_controller.dart';
 import 'package:round_six/models/enums/constants.dart';
 import 'package:round_six/models/game_option_model.dart';
 import 'package:round_six/theme/theme.dart';
@@ -50,21 +51,20 @@ class _CardGameWidgetState extends State<CardGameWidget>
   }
 
   flipCard() {
-    if (!animation.isAnimating) {
+    final game = context.read<GameController>();
+    if (!animation.isAnimating &&
+        !widget.gameOption.matched &&
+        !widget.gameOption.selected &&
+        !game.fullMove) {
       animation.forward();
-      Timer(
-        Duration(milliseconds: 1500),
-        () {
-          if (mounted) {
-            animation.reverse();
-          }
-        },
-      );
+      game.toChose(widget.gameOption, resetCard);
     }
   }
 
   resetCard() {
-    animation.reverse();
+    if (mounted) {
+      animation.reverse();
+    }
   }
 
   @override

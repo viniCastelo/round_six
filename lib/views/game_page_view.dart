@@ -31,7 +31,7 @@ class GamePageView extends StatelessWidget {
         title: GameScoreWidget(mode: gamePlay.mode),
       ),
       body: Observer(
-        builder: (context) {
+        builder: (_) {
           if (controller.win) {
             return FeedbackGameWidget(result: Result.approved);
           } else if (controller.loss) {

@@ -70,6 +70,35 @@ abstract class GameControllerBase with Store {
     _gamePlay.mode == Mode.normal ? score++ : score--;
   }
 
+  _checkResultModeNormal(bool allMatched) async {
+    await Future.delayed(
+        const Duration(milliseconds: 1500), () => win == allMatched);
+  }
+
+  _chancesOver() {
+    return score < _pairNumbers - _hits;
+  }
+
+  _checkResultModeRound6(bool allMatched) async {
+    if (_chancesOver()) {
+      await Future.delayed(
+          const Duration(milliseconds: 400), () => loss = true);
+    }
+    if (allMatched && score >= 0) {
+      await Future.delayed(
+          const Duration(milliseconds: 1250), () => win == allMatched);
+    }
+  }
+
+  _checkGameResult() async {
+    bool allMatched = _hits == _pairNumbers;
+    if (_gamePlay.mode == Mode.normal) {
+      await _checkResultModeNormal(allMatched);
+    } else {
+      await _checkResultModeRound6(allMatched);
+    }
+  }
+
   comparChoises() async {
     if (fullMove) {
       if (_choice[0].option == _choice[1].option) {
@@ -89,6 +118,7 @@ abstract class GameControllerBase with Store {
       }
       _resetMove();
       _updateScore();
+      _checkGameResult();
     }
   }
 
@@ -97,5 +127,20 @@ abstract class GameControllerBase with Store {
     _choice.add(option);
     _choiceCallback.add(resetCard);
     await comparChoises();
+  }
+
+  restartGame() {
+    startGame(gamePlay: _gamePlay);
+  }
+
+  nextLevel() {
+    int levelIndex = 0;
+
+    if (_gamePlay.level != GameSettingsModel.levels.last) {
+      levelIndex = GameSettingsModel.levels.indexOf(_gamePlay.level) + 1;
+    }
+
+    _gamePlay.level = GameSettingsModel.levels[levelIndex];
+    startGame(gamePlay: _gamePlay);
   }
 }
